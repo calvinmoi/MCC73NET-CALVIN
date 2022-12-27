@@ -25,8 +25,7 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Account", b =>
                 {
                     b.Property<string>("NIK")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("nchar(5)")
                         .HasColumnName("nik");
 
                     b.Property<DateTime>("ExpiredToken")
@@ -43,8 +42,7 @@ namespace API.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("password");
 
                     b.HasKey("NIK");
@@ -63,8 +61,7 @@ namespace API.Migrations
 
                     b.Property<string>("AccountNIK")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("nchar(5)")
                         .HasColumnName("account_nik");
 
                     b.Property<int>("RoleId")
@@ -115,8 +112,7 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Employee", b =>
                 {
                     b.Property<string>("NIK")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("nchar(5)")
                         .HasColumnName("nik");
 
                     b.Property<DateTime>("BirthDate")
@@ -136,7 +132,6 @@ namespace API.Migrations
                         .HasColumnName("first_name");
 
                     b.Property<int>("Gender")
-                        .HasMaxLength(15)
                         .HasColumnType("int")
                         .HasColumnName("gender");
 
@@ -168,8 +163,7 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Profiling", b =>
                 {
                     b.Property<string>("NIK")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
+                        .HasColumnType("nchar(5)")
                         .HasColumnName("nik");
 
                     b.Property<int>("EducationId")

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.Models;
 
@@ -15,8 +16,10 @@ public class Education
     [Required, Column("university_id")]
     public int UniversityId { get; set; }
 
+    [JsonIgnore]
     // Relation
     [ForeignKey("UniversityId")]
     public University? University { get; set; }
+    [JsonIgnore]
     public Profiling? Profiling { get; set; }
 }
