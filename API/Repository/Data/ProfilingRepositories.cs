@@ -7,7 +7,7 @@ namespace API.Repository.Data;
 
 public class ProfilingRepositories : GeneralRepository<Profiling, string>
 {
-  protected ProfilingRepositories(MyContext context) : base(context)
+  public ProfilingRepositories(MyContext context) : base(context)
   {
   }
   /*private MyContext _context;

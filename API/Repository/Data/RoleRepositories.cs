@@ -7,7 +7,7 @@ namespace API.Repository.Data;
 
 public class RoleRepositories : GeneralRepository<Role, int>
 {
-  protected RoleRepositories(MyContext context) : base(context)
+  public RoleRepositories(MyContext context) : base(context)
   {
   }
   /*private MyContext _context;
