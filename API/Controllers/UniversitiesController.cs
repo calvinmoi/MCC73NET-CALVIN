@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
-using API.Models;
 using API.Repository.Data;
 using Microsoft.AspNetCore.Authorization;
+using API.Base;
+using API.Models;
+
 namespace API.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/universities")]
 [ApiController]
-[Authorize(Roles = "Manager")]
 
-public class UniversitiesController : ControllerBase
+public class UniversitiesController : BaseController<UniversityRepositories, University, int>
 {
-  private UniversityRepositories _repo;
-
-  public UniversitiesController(UniversityRepositories repo)
+  //private UniversityRepositories _repo;
+  public UniversitiesController(UniversityRepositories repo) : base(repo)
   {
-    _repo = repo;
+
   }
 
-  [AllowAnonymous]
+  /*[AllowAnonymous]
   [HttpGet]
   public ActionResult GetAll()
   {
@@ -96,5 +96,5 @@ public class UniversitiesController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

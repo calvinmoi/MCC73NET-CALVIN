@@ -1,11 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
-
 namespace API.Repository.Data;
 
-public class RoleRepositories : GeneralRepository<Role, int>
+public class RoleRepositories : GeneralRepository<MyContext, Role, int>
 {
   public RoleRepositories(MyContext context) : base(context)
   {

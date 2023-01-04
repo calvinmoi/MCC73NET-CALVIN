@@ -1,11 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
 
 namespace API.Repository.Data;
 
-public class ProfilingRepositories : GeneralRepository<Profiling, string>
+public class ProfilingRepositories : GeneralRepository<MyContext, Profiling, string>
 {
   public ProfilingRepositories(MyContext context) : base(context)
   {

@@ -6,18 +6,19 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using API.Base;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 
-public class AccountsController : ControllerBase
+public class AccountsController : BaseController<AccountRepositories, Account, string>
 {
   private AccountRepositories _repo;
   private IConfiguration _con;
 
-  public AccountsController(AccountRepositories repo, IConfiguration con)
+  public AccountsController(AccountRepositories repo, IConfiguration con) : base(repo)
   {
     _repo = repo;
     _con = con;
@@ -98,7 +99,7 @@ public class AccountsController : ControllerBase
   }
 
 
-  [HttpGet]
+  /*[HttpGet]
   public ActionResult GetAll()
   {
     try
@@ -177,5 +178,5 @@ public class AccountsController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

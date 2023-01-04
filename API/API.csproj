@@ -26,4 +26,8 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Demo.Common\Demo.Common.csproj" />
+  </ItemGroup>
+
 </Project>

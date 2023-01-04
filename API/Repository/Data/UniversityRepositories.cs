@@ -1,11 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
-
 namespace API.Repository.Data;
 
-public class UniversityRepositories : GeneralRepository<University, int>
+public class UniversityRepositories : GeneralRepository<MyContext, University, int>
 {
   public UniversityRepositories(MyContext context) : base(context)
   {

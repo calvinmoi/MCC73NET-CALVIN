@@ -2,23 +2,24 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Repository.Data;
 using Microsoft.AspNetCore.Authorization;
+using API.Base;
 
 namespace API.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/accountroles")]
 [ApiController]
 [Authorize(Roles = "Admin")]
 
-public class AccountRolesController : ControllerBase
+public class AccountRolesController : BaseController<AccountRoleRepositories, AccountRole, int>
 {
-  private AccountRoleRepositories _repo;
+  //private AccountRoleRepositories _repo;
 
-  public AccountRolesController(AccountRoleRepositories repo)
+  public AccountRolesController(AccountRoleRepositories repo) : base(repo)
   {
-    _repo = repo;
+    //_repo = repo;
   }
 
-  [HttpGet]
+  /*[HttpGet]
   public ActionResult GetAll()
   {
     try
@@ -97,5 +98,5 @@ public class AccountRolesController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

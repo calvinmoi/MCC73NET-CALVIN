@@ -2,24 +2,26 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Repository.Data;
 using Microsoft.AspNetCore.Authorization;
+using API.Base;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 
-public class EmployeesController : ControllerBase
+public class EmployeesController : BaseController<EmployeeRepositories, Employee, string>
 {
   private EmployeeRepositories _repo;
 
-  public EmployeesController(EmployeeRepositories repo)
+  public EmployeesController(EmployeeRepositories repo) : base(repo)
   {
     _repo = repo;
   }
 
-  [Authorize(Roles = "Manager,Admin")]
+  //[Authorize(Roles = "Manager,Admin")]
   [HttpGet]
   [Route("Master")]
+  [AllowAnonymous]
   public ActionResult GetMaster()
   {
     try
@@ -36,7 +38,7 @@ public class EmployeesController : ControllerBase
 
   }
 
-  [HttpGet]
+  /*[HttpGet]
   public ActionResult GetAll()
   {
     try
@@ -115,5 +117,5 @@ public class EmployeesController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

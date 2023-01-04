@@ -1,33 +1,21 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
 using API.ViewModels;
 
 namespace API.Repository.Data;
 
-public class EmployeeRepositories : GeneralRepository<Employee, string>
+public class EmployeeRepositories : GeneralRepository<MyContext, Employee, string>
 {
   private MyContext _context;
-  private DbSet<Employee> _employees;
-  private readonly DbSet<Account> _accounts;
-  private readonly DbSet<Profiling> _profilings;
-  private readonly DbSet<Education> _educations;
-  private readonly DbSet<University> _universities;
   public EmployeeRepositories(MyContext context) : base(context)
   {
     _context = context;
-    _employees = context.Set<Employee>();
-    _accounts = context.Set<Account>();
-    _profilings = context.Set<Profiling>();
-    _educations = context.Set<Education>();
-    _universities = context.Set<University>();
   }
 
   public IEnumerable<MEmployeeVM> MasterEmployee()
   {
-    var result = _employees.Join(_accounts, e => e.NIK, a => a.NIK, (e, a) => new { e, a }).Join(_profilings, ea => ea.a.NIK, p => p.NIK, (ea, p)
-    => new { ea, p }).Join(_educations, eap => eap.p.EducationId, ed => ed.Id, (eap, ed) => new { eap, ed }).Join(_universities, eaped => eaped.ed.UniversityId, u => u.Id, (eaped, u) => new MEmployeeVM
+    var result = _context.Employees.Join(_context.Accounts, e => e.NIK, a => a.NIK, (e, a) => new { e, a }).Join(_context.Profilings, ea => ea.a.NIK, p => p.NIK, (ea, p)
+    => new { ea, p }).Join(_context.Educations, eap => eap.p.EducationId, ed => ed.Id, (eap, ed) => new { eap, ed }).Join(_context.Universities, eaped => eaped.ed.UniversityId, u => u.Id, (eaped, u) => new MEmployeeVM
     {
       NIK = eaped.eap.ea.e.NIK,
       FullName = eaped.eap.ea.e.FirstName + " " + eaped.eap.ea.e.LastName,

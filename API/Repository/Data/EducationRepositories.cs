@@ -1,26 +1,22 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
 using API.ViewModels;
 
 namespace API.Repository.Data;
 
-public class EducationRepositories : GeneralRepository<Education, int>
+public class EducationRepositories : GeneralRepository<MyContext, Education, int>
 {
-  private MyContext _context;
-  private DbSet<Education> _educations;
+  private readonly MyContext _context;
 
   public EducationRepositories(MyContext context) : base(context)
   {
     _context = context;
-    _educations = context.Set<Education>();
   }
 
 
   public IEnumerable<MEducationVM> MasterEducation()
   {
-    var result = _educations.Join(_context.Universities, e => e.UniversityId, u => u.Id, (e, u) => new MEducationVM
+    var result = _context.Educations.Join(_context.Universities, e => e.UniversityId, u => u.Id, (e, u) => new MEducationVM
     {
       Id = e.Id,
       Degree = e.Degree,

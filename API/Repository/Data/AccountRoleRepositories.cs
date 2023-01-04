@@ -1,14 +1,14 @@
-using Microsoft.EntityFrameworkCore;
 using API.Contexts;
 using API.Models;
-using API.Repository.Interface;
 
 namespace API.Repository.Data;
 
-public class AccountRoleRepositories : GeneralRepository<AccountRole, int>
+public class AccountRoleRepositories : GeneralRepository<MyContext, AccountRole, int>
 {
+  private readonly MyContext _context;
   public AccountRoleRepositories(MyContext context) : base(context)
   {
+    _context = context;
   }
   /*private MyContext _context;
   private DbSet<AccountRole> _accountroles;

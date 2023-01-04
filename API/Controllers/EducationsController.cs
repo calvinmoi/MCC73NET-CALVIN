@@ -2,18 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Repository.Data;
 using Microsoft.AspNetCore.Authorization;
+using API.Base;
 
 namespace API.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/educations")]
 [ApiController]
 [Authorize(Roles = "Manager")]
 
-public class EducationsController : ControllerBase
+public class EducationsController : BaseController<EducationRepositories, Education, int>
 {
   private EducationRepositories _repo;
 
-  public EducationsController(EducationRepositories repo)
+  public EducationsController(EducationRepositories repo) : base(repo)
   {
     _repo = repo;
   }
@@ -36,7 +37,7 @@ public class EducationsController : ControllerBase
 
   }
 
-  [HttpGet]
+  /*[HttpGet]
   public ActionResult GetAll()
   {
     try
@@ -115,5 +116,5 @@ public class EducationsController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

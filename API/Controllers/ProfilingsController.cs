@@ -2,23 +2,24 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Repository.Data;
 using Microsoft.AspNetCore.Authorization;
+using API.Base;
 
 namespace API.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/profilings")]
 [ApiController]
 [Authorize(Roles = "Manager")]
 
-public class ProfilingsController : ControllerBase
+public class ProfilingsController : BaseController<ProfilingRepositories, Profiling, string>
 {
-  private ProfilingRepositories _repo;
+  //private ProfilingRepositories _repo;
 
-  public ProfilingsController(ProfilingRepositories repo)
+  public ProfilingsController(ProfilingRepositories repo) : base(repo)
   {
-    _repo = repo;
+    //_repo = repo;
   }
 
-  [HttpGet]
+  /*[HttpGet]
   public ActionResult GetAll()
   {
     try
@@ -97,5 +98,5 @@ public class ProfilingsController : ControllerBase
     {
       return BadRequest(new { statusCode = 500, message = $"Something Wrong {e.Message}" });
     }
-  }
+  }*/
 }

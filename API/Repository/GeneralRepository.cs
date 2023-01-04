@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Repository;
 
 
-public class GeneralRepository<TEntity, T> : IRepository<TEntity, T> where TEntity : class
+public class GeneralRepository<Context, TEntity, T> : IRepository<TEntity, T>
+where TEntity : class
+where Context : MyContext
 {
   private DbSet<TEntity> _setcon;
   private MyContext _context;
